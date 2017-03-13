@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Live API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -200,7 +200,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,9 +211,7 @@
       <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">json</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,8 +220,8 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><!--<a href='#'>Sign Up for a Developer Key</a>--></li>
+            <li><!--<a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>--></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -231,149 +229,244 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the LIVE API! You can use this API to access Live API endpoints, which can get information on various Artist, Users, Places and Events in the database.</p>
 
 <p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
 
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To log in the user on the api, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
+     --url <span class="s1">'93.113.206.223:8080/login'</span> <span class="se">\</span>
+     --header <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+     --data <span class="s1">'token={unique_device_id}&amp;platform={web || ios || android}&amp;version={your_app_version}}&amp;device_name={device_name}'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connected"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"min_radius"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"max_radius"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"secret_question"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+         </span><span class="s2">"Quel est le nom de jeune fille de votre mère?"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"Quel est le premier groupe que vous êtes allés voir en concert?"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"Quel est le nom de votre premier animal de compagnie?"</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<blockquote>
+<p>Make sure to replace everything inside &lsquo;{..}&rsquo; with your data.</p>
+</blockquote>
+
+<p>Live uses a token to allow access to the API. You must include your token in every request.
+You should call this request every time your app is used to make sure your token is marked as connected in the database.
+It will register a new token if the token you gave is not known in the database.
+It will also give you some basic app requierement you must follow.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">POST http://93.113.206.223:8080/login</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>token</td>
+<td>A UNIQUE device identifier, could be a devide ID on mobile or mac address on website.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>platform</td>
+<td>A device description such as iOS, Android, Windows, or Mac.</td>
+</tr>
+<tr>
+<td>device_name</td>
+<td>A device name, example: Vico-iPhone.</td>
+</tr>
+<tr>
+<td>version</td>
+<td>The version code of the app your are building, example 1.12.</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+  Remember — Save the token where you can have easy access to it.
+  <br>You must reuse the same token for every other request.
 </aside>
 
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id="artist">Artist</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<h2 id="get-artists">Get Artists</h2>
+<pre class="highlight shell tab-shell"><code>
+curl --request POST <span class="se">\</span>
+     --url <span class="s1">'93.113.206.223:8080/get/artist'</span> <span class="se">\</span>
+     --header <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+     --data <span class="s1">'token={unique_device_id}&amp;artist_id={optional_artist_id}
+</span></code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artist"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"artist"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58a625dc35b08a03442a58d1"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"access_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"average_feedback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"background_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1487513743885"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Développer account, testing purpose"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vicostudio@gmail.com"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"facebook_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1445402898817253"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"instagram_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"387513160"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"instagram_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"387513160.840568e.ff3661ddcc324ce6b5c21b0cb2f6fbb2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Victor Sousa"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nb_feedback"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"da3ff4793bfb175b597e93e421fd1bdbe874065212f14b6b9761945ab7c80935b586090114267b29aa70e2181116841e5e9b79b95ec5595debb63b35a8bb7621"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"profil_image"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1487283720945"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"soundcloud_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"284658194"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"style"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Personnal account"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Les 3 Diables"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2, Cours Saleya"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nice"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"code_postal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06300"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.69533790000001"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.2764073"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1489293534318"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58c4d0dedda72238fe377ee6"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                     </span><span class="s2">"58c4d0dedda72238fe377ee1"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c4d0dedda72238fe377ee2"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c4d0dedda72238fe377ee3"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c4d0dedda72238fe377ee4"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c4d0dedda72238fe377ee5"</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"artist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58a625dc35b08a03442a58d1"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3/12/2017 "</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58c4d0dedda72238fe377ee7"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-12T18:00:00.000Z"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"place"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KFC Nice Jean Médecin"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"64, Avenue Jean Médecin"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nice"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"code_postal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06000"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"43.7052351"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.2653097"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1489349559080"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58c5abb72c7ea70610d2ae79"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                     </span><span class="s2">"58c5abb72c7ea70610d2ae74"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c5abb72c7ea70610d2ae75"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c5abb72c7ea70610d2ae76"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c5abb72c7ea70610d2ae77"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"58c5abb72c7ea70610d2ae78"</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"artist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58a625dc35b08a03442a58d1"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3/12/2017 "</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58c5abb72c7ea70610d2ae7a"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date_full"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-12T21:12:00.000Z"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"feedback"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"super concert"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Top bonne bière! "</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"pseudo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jml"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"imageUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1487701112604"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58ac8479b1fb3c09d7456029"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-21T18:18:33.229Z"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ça a l'air de marcher !"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Et ouais !"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"pseudo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coucou"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"imageUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"photo-1487708929510"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"58aca30bb1fb3c09d745603d"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-21T20:28:59.210Z"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"reported"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>Make sure to replace everything inside &lsquo;{..}&rsquo; with your data.</p>
+</blockquote>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves artists.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">POST http://93.113.206.223:8080/get/artist</code></p>
 
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>NO</td>
+<td>Your UNIQUE device identifier.</td>
+</tr>
+<tr>
+<td>artist_id</td>
+<td>YES</td>
+<td>If set, endpoint will only fill the array with the id corresponding artist.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-artist">Create Artist</h2>
+<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
+     --url <span class="s1">'http://93.113.206.223:8080/create/artist_account'</span> <span class="se">\</span>
+     --header <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+     --data <span class="s1">'token={unique_device_id}&amp;name={artist_name}&amp;style={artist_style}&amp;password={artist_password}&amp;description={artist_description}&amp;email={artist_email}&amp;secret_question={secret_question_string}&amp;secret_response={secret_response_string}'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Artist created"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"token"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"artist_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"artist_ID"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Make sure to replace everything inside &lsquo;{..}&rsquo; with your data.</p>
+</blockquote>
+
+<p>This endpoint creates an artists in the database.
+It also connect your token to the artist if the creation is successfull.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://93.113.206.223:8080/create/artist_account</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -382,8 +475,114 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>token</td>
+<td>Your UNIQUE device identifier.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the artist to create.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>His email.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>His password.</td>
+</tr>
+<tr>
+<td>style</td>
+<td>His style.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>His description.</td>
+</tr>
+<tr>
+<td>secret_question</td>
+<td>The string value of the questions he picked (must be one of those given in <a href='#authentication'>login</a>).</td>
+</tr>
+<tr>
+<td>secret_response</td>
+<td>His secret response.</td>
+</tr>
+</tbody></table>
+
+<h2 id="connect-artist">Connect Artist</h2>
+<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
+     --url <span class="s1">'93.113.206.223:8080/connect/artist_account'</span> <span class="se">\</span>
+     --header <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+     --data <span class="s1">'token={unique_device_id}&amp;email={artist_email}&amp;password={artist_password}'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Connection successfull"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Make sure to replace everything inside &lsquo;{..}&rsquo; with your data.</p>
+</blockquote>
+
+<p>This endpoint connect your token to an artist.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://93.113.206.223:8080/connect/artist_account</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Your UNIQUE device identifier.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>The artist email.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>His password.</td>
+</tr>
+</tbody></table>
+
+<h2 id="disconnect-artist">Disconnect Artist</h2>
+<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
+  --url <span class="s1">'93.113.206.223:8080/logout/artist_account'</span> <span class="se">\</span>
+  --header <span class="s1">'content-type: application/x-www-form-urlencoded'</span> <span class="se">\</span>
+  --data <span class="s1">'token={unique_device_id}'</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disconnection successfull"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"42"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Make sure to replace everything inside &lsquo;{..}&rsquo; with your data.</p>
+</blockquote>
+
+<p>This endpoint disconnect your token from the artist it is connected to.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://93.113.206.223:8080/logout/artist_account</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td>Your UNIQUE device identifier.</td>
 </tr>
 </tbody></table>
 
@@ -449,9 +648,7 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">json</a>
           </div>
       </div>
     </div>
